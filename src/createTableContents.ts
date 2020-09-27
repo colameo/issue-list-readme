@@ -9,8 +9,7 @@ const createTableContents = async (issues: any[]) => {
     }));
 
     const markDownText: string = tablemark(await Promise.all(array), {
-      columns: [
-        { align: 'left' }      ]
+      columns: [{ align: 'left' }]
     });
 
     return markDownText;

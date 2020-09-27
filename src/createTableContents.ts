@@ -5,22 +5,12 @@ import extractBody from './extractBody';
 const createTableContents = async (issues: any[]) => {
   try {
     const array = issues.map(async (item: any) => ({
-      title: `<a href="${item.html_url}">${item.title}</a>`,
-      status: item.state === 'open' ? ':eight_spoked_asterisk:' : ':no_entry:',
-      assignee: item.assignees.map(
-        (assignee: any) =>
-          `<a href="${assignee.html_url}"><img src="${assignee.avatar_url}" width="20" /></a>`
-      ),
-      body: await extractBody(item.body)
+      title: `<a href="${item.html_url}">${item.title}</a>`
     }));
 
     const markDownText: string = tablemark(await Promise.all(array), {
       columns: [
-        { align: 'left' },
-        { align: 'center' },
-        { align: 'center' },
-        { align: 'left' }
-      ]
+        { align: 'left' }      ]
     });
 
     return markDownText;
